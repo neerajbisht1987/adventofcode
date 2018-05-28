@@ -11,21 +11,21 @@ pub fn inversecaptch()
 
     fn checkandsum(s:& String)->u32
     {
-        
-        let strc = s.as_bytes();
+        let strc: Vec<char> = s.chars().collect();
         let mut val:u32=0;
 
-        for i in 0..s.len() {
-            if i == s.len()-1
+        for i in 0..strc.len() {
+            if i == strc.len()-1
             {  
+               
                 if strc[i] == strc[0]
                 {
-                    val += strc[i] as u32 - 48;
+                    val += strc[i].to_digit(10).unwrap();
                 }
             }
             else {
                 if strc[i] == strc[i+1] {
-                 val += strc[i] as u32 - 48;
+                    val += strc[i].to_digit(10).unwrap();
                 }
             }
         }
